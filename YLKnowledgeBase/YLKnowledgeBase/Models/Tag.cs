@@ -6,19 +6,16 @@ using System.Threading.Tasks;
 
 namespace YLKnowledgeBase.Models
 {
-    public class Category
+    public class Tag
     {
-
-        public Category()
+        public Tag()
         {
             this.Notes = new HashSet<Note>();
         }
 
         [Key]
         [Display(Name = "Id")]
-        public Guid CategoryId { get; set; }
-        [Display(Name = "Category name")]
-        [MaxLength(1500)]
+        public Guid TagId { get; set; }
         public string Name { get; set; }
 
         public virtual ICollection<Note> Notes { get; set; }

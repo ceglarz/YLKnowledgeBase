@@ -8,7 +8,6 @@ namespace YLKnowledgeBase.Models
 {
     public class YLKnowledgeBaseDbContext : DbContext
     {
-        public DbSet<Note> Notes { get; set; }
-        public DbSet<Category> Categories { get; set; }
+
     }
 }

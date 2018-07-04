@@ -8,13 +8,20 @@ namespace YLKnowledgeBase.Models
 {
     public class Note
     {
-            [Display(Name = "Id:")]
-            public int Id { get; set; }
+        public Note()
+        {
+            this.Tags = new HashSet<Tag>();
+        }
 
-            [Display(Name = "Treść wpisu:")]
-            [MaxLength(1500)]
-            public string Description { get; set; }
+        [Key]
+        [Display(Name = "Id")]
+        public Guid NoteId { get; set; }
+        public string Name { get; set; }
+        [Display(Name = "Content of the note")]
+        public string Description { get; set; }
+        public DateTime CreateDate { get; set; }
 
-            public virtual Category Category { get; set; }
+        public virtual Category Category { get; set; }
+        public virtual ICollection<Tag> Tags { get; set; }
     }
 }
