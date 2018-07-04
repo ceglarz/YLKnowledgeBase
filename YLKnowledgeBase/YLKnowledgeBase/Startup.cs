@@ -11,6 +11,7 @@ using Microsoft.Extensions.DependencyInjection;
 using YLKnowledgeBase.Data;
 using YLKnowledgeBase.Models;
 using YLKnowledgeBase.Services;
+using YLKnowledgeBase.Services.Interfaces;
 
 namespace YLKnowledgeBase
 {
@@ -35,6 +36,8 @@ namespace YLKnowledgeBase
 
             // Add application services.
             services.AddTransient<IEmailSender, EmailSender>();
+            services.AddTransient<ICategoryService, CategoryService>();
+            services.AddTransient<INoteService, NoteService>();
 
             services.AddMvc();
         }

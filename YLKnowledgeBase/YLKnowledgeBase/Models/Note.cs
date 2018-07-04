@@ -16,10 +16,11 @@ namespace YLKnowledgeBase.Models
         [Key]
         [Display(Name = "Id")]
         public Guid NoteId { get; set; }
+        [MaxLength(50)]
         public string Name { get; set; }
         [Display(Name = "Content of the note")]
-        public string Description { get; set; }
-        public DateTime CreateDate { get; set; }
+        public string Content { get; set; }
+        public DateTime DateOfCreate { get; set; }
 
         public virtual Category Category { get; set; }
         public virtual ICollection<Tag> Tags { get; set; }

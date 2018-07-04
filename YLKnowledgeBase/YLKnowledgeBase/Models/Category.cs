@@ -8,9 +8,13 @@ namespace YLKnowledgeBase.Models
 {
     public class Category
     {
-
         public Category()
         {
+            this.Notes = new HashSet<Note>();
+        }
+        public Category(string Name)
+        {
+            this.Name = Name;
             this.Notes = new HashSet<Note>();
         }
 
@@ -18,7 +22,7 @@ namespace YLKnowledgeBase.Models
         [Display(Name = "Id")]
         public Guid CategoryId { get; set; }
         [Display(Name = "Category name")]
-        [MaxLength(1500)]
+        [MaxLength(30)]
         public string Name { get; set; }
 
         public virtual ICollection<Note> Notes { get; set; }
