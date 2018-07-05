@@ -34,16 +34,62 @@ namespace YLKnowledgeBase
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
 
+            services.Configure<IdentityOptions>(options =>
+            {
+                options.Password.RequireDigit = true;
+                options.Password.RequiredLength = 8;
+                options.Password.RequireNonAlphanumeric = false;
+                options.Password.RequireUppercase = false;
+                options.Password.RequireLowercase = true;
+                options.Password.RequiredUniqueChars = 6;
+
+                options.Lockout.MaxFailedAccessAttempts = 5;
+                options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(10);
+                options.Lockout.AllowedForNewUsers = true;
+
+                options.User.RequireUniqueEmail = true;
+
+            });
+
+            services.ConfigureApplicationCookie(options =>
+            {
+                options.Cookie.HttpOnly = true;
+                options.ExpireTimeSpan = TimeSpan.FromDays(1);
+            });
+
+
+
+
+
+
+
+
             // Add application services.
             services.AddTransient<IEmailSender, EmailSender>();
             services.AddTransient<ICategoryService, CategoryService>();
             services.AddTransient<INoteService, NoteService>();
 
-            services.AddMvc();
+            services.AddMvc(); 
+        }
+        private async Task CreateUserRoles(IServiceProvider serviceProvider)
+        {
+            var RoleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+            var UserManager = serviceProvider.GetRequiredService<UserManager<ApplicationUser>>();
+
+            IdentityResult roleResult;
+            var roleCheck = await RoleManager.RoleExistsAsync("Admin");
+            if (!roleCheck)
+            {
+                roleResult = await RoleManager.CreateAsync(new IdentityRole("Admin"));
+
+            }
+            ApplicationUser user = await UserManager.FindByEmailAsync("grzegorz.maksim@gmail.com");
+            var User = new ApplicationUser();
+            await UserManager.AddToRoleAsync(user, "Admin");
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env,IServiceProvider services)
         {
             if (env.IsDevelopment())
             {
@@ -66,6 +112,9 @@ namespace YLKnowledgeBase
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
+            CreateUserRoles(services).Wait();
         }
+        
+       
     }
 }
