@@ -57,13 +57,6 @@ namespace YLKnowledgeBase
                 options.ExpireTimeSpan = TimeSpan.FromDays(1);
             });
 
-
-
-
-
-
-
-
             // Add application services.
             services.AddTransient<IEmailSender, EmailSender>();
             services.AddTransient<ICategoryService, CategoryService>();
@@ -71,6 +64,7 @@ namespace YLKnowledgeBase
 
             services.AddMvc(); 
         }
+
         private async Task CreateUserRoles(IServiceProvider serviceProvider)
         {
             var RoleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
@@ -83,7 +77,7 @@ namespace YLKnowledgeBase
                 roleResult = await RoleManager.CreateAsync(new IdentityRole("Admin"));
 
             }
-            ApplicationUser user = await UserManager.FindByEmailAsync("grzegorz.maksim@gmail.com");
+            ApplicationUser user = await UserManager.FindByEmailAsync("o.ceglarski@youlead.pl");
             var User = new ApplicationUser();
             await UserManager.AddToRoleAsync(user, "Admin");
         }
