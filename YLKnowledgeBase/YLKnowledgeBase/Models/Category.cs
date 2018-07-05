@@ -8,16 +8,6 @@ namespace YLKnowledgeBase.Models
 {
     public class Category
     {
-        public Category()
-        {
-            this.Notes = new HashSet<Note>();
-        }
-        public Category(string Name)
-        {
-            this.Name = Name;
-            this.Notes = new HashSet<Note>();
-        }
-
         [Key]
         [Display(Name = "Id")]
         public Guid CategoryId { get; set; }

@@ -8,16 +8,11 @@ namespace YLKnowledgeBase.Models
 {
     public class Tag
     {
-        public Tag()
-        {
-            this.Notes = new HashSet<Note>();
-        }
-
         [Key]
         [Display(Name = "Id")]
         public Guid TagId { get; set; }
         public string Name { get; set; }
 
-        public virtual ICollection<Note> Notes { get; set; }
+        public virtual ICollection<TagNote> TagNotes { get; set; }
     }
 }
