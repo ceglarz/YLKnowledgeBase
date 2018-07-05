@@ -11,7 +11,7 @@ namespace YLKnowledgeBase.Services.Interfaces
         IEnumerable<Note> GetAllNotes();
         Note GetNotes(Guid id);
         void CreateNote();
-        void EditNote();
+        void EditNote(Note note);
         void ToDeleteNote();
         bool NoteExists(Guid id);
         void Save();

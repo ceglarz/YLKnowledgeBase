@@ -21,31 +21,11 @@ namespace YLKnowledgeBase.Services
         public IEnumerable<Category> GetAllCategories()
         {
             return _context.Categories.ToList();
-
-            return new List<Category>
-            {
-                new Category("Kategoria 1"), new Category("Kategoria 2")
-            };
         }
 
         public Category GetCategory(Guid id)
         {
             return _context.Categories.SingleOrDefault(o => o.CategoryId == id);
-        }
-
-        public void CreateCategory()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void EditCategory()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void ToDeleteCategory()
-        {
-            throw new NotImplementedException();
         }
 
         public bool CategoryExists(Guid id)
@@ -56,6 +36,21 @@ namespace YLKnowledgeBase.Services
         public async void Save()
         {
             await _context.SaveChangesAsync();
+        }
+
+        public void CreateCategory()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void EditCategory(Category category)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void ToDeleteCategory()
+        {
+            throw new NotImplementedException();
         }
     }
 }

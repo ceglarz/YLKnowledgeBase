@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -12,7 +11,7 @@ namespace YLKnowledgeBase.Services
         IEnumerable<Category> GetAllCategories();
         Category GetCategory(Guid id);
         void CreateCategory();
-        void EditCategory();
+        void EditCategory(Category category);
         void ToDeleteCategory();
         bool CategoryExists(Guid id);
         void Save();

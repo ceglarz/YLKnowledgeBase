@@ -33,9 +33,9 @@ namespace YLKnowledgeBase.Services
             throw new NotImplementedException();
         }
 
-        public void EditNote()
+        public void EditNote(Note note)
         {
-            throw new NotImplementedException();
+            _context.Update(note);
         }
 
         public void ToDeleteNote()
