@@ -109,6 +109,5 @@ namespace YLKnowledgeBase
             CreateUserRoles(services).Wait();
         }
         
-       
     }
 }

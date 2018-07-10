@@ -1,0 +1,30 @@
+﻿@model IEnumerable<YLKnowledgeBase.Models.Category>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+hello, knowledge base
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            One of two columns<br/><br />
+            <div id="categories" class="navbar-categories">
+
+            </div>
+        </div>
+        <div class="col-md-8">
+            One of two columns
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script type="text/javascript" src="~/js/dataFactory.js"></script>
+}

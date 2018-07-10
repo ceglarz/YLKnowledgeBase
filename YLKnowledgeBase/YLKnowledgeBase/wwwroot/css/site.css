@@ -10,6 +10,39 @@
     padding-right: 15px;
 }
 
+.col-md-4 {
+    padding-left: 0;
+}
+
+.navbar-categories {
+    width: 100%;
+    float: left;
+    border: 1px solid #ccc;
+    background-color: #f1f1f1;
+    height: 300px;
+}
+
+.option-categories {
+    width: 100%;
+}
+
+.navbar-categories button {
+    display: block;
+    background-color: inherit;
+    color: black;
+    padding: 22px 16px;
+    width: 100%;
+    border: none;
+    outline: none;
+    text-align: left;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.navbar-categories button:hover {
+    background-color: #ddd;
+}
+
 /* Carousel */
 .carousel-caption p {
     font-size: 20px;
