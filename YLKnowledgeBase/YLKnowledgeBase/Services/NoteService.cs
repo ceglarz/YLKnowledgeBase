@@ -23,7 +23,7 @@ namespace YLKnowledgeBase.Services
             return _context.Notes.ToList();
         }
 
-        public Note GetNotes(Guid id)
+        public Note GetNotes(Guid? id)
         {
             return _context.Notes.SingleOrDefault(o => o.NoteId == id);
         }
@@ -50,7 +50,11 @@ namespace YLKnowledgeBase.Services
 
         public async void Save()
         {
-            await _context.SaveChangesAsync();
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (Exception e) { Console.WriteLine("{0} Exception caught.", e); }
         }
     }
 }

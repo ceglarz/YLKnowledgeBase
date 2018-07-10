@@ -9,8 +9,8 @@ namespace YLKnowledgeBase.Services
     public interface ICategoryService
     {
         IEnumerable<Category> GetAllCategories();
-        Category GetCategory(Guid id);
-        void CreateCategory();
+        Task<Category> GetCategory(Guid id);
+        void CreateCategory(Category category);
         void EditCategory(Category category);
         void ToDeleteCategory();
         bool CategoryExists(Guid id);

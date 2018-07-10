@@ -5,6 +5,14 @@
     <UserSecretsId>aspnet-YLKnowledgeBase-ED7427E4-98DB-4DDB-B1DB-C9161F93E4FF</UserSecretsId>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Remove="Controllers\NoteController_old.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="Views\Note\View.cshtml" />
+  </ItemGroup>
+
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.6" />

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using YLKnowledgeBase.Data;
 using YLKnowledgeBase.Models;
 
@@ -17,15 +18,21 @@ namespace YLKnowledgeBase.Services
             _context = context;
         }
 
+        List <Category> CategoriesTest = new List<Category>{
+            new Category { Name = "Kategoria 1", CategoryId= Guid.NewGuid() },
+            new Category { Name = "Kategoria 2", CategoryId= Guid.NewGuid() }
+        }; //test
 
         public IEnumerable<Category> GetAllCategories()
         {
-            return _context.Categories.ToList();
+            //return _context.Categories.ToList();
+            return CategoriesTest; //test
         }
 
-        public Category GetCategory(Guid id)
+        public async Task<Category> GetCategory(Guid id)
         {
-            return _context.Categories.SingleOrDefault(o => o.CategoryId == id);
+            //return await _context.Categories.SingleOrDefaultAsync(o => o.CategoryId == id);
+            return CategoriesTest.ElementAt(0); //test
         }
 
         public bool CategoryExists(Guid id)
@@ -38,7 +45,7 @@ namespace YLKnowledgeBase.Services
             await _context.SaveChangesAsync();
         }
 
-        public void CreateCategory()
+        public void CreateCategory(Category category)
         {
             throw new NotImplementedException();
         }
