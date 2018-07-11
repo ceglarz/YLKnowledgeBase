@@ -100,7 +100,7 @@ namespace YLKnowledgeBase
             }
             //Assign Admin role to the main User here we have given our newly registered 
             //login id for Admin management
-            ApplicationUser user = await UserManager.FindByEmailAsync("syedshanumcain@gmail.com");
+            ApplicationUser user = await UserManager.FindByEmailAsync("grzegorz.maksim@gmail.com");
             var User = new ApplicationUser();
             await UserManager.AddToRoleAsync(user, "Admin");
         }

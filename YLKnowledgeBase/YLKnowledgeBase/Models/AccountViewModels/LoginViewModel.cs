@@ -8,9 +8,14 @@ namespace YLKnowledgeBase.Models.AccountViewModels
 {
     public class LoginViewModel
     {
+        /*
         [Required]
         [EmailAddress]
-        public string Email { get; set; }
+        public string Email { get; set; }*/
+        [Required]
+        [DataType(DataType.Text)]
+        public string UserName { get; set; }
+
 
         [Required]
         [DataType(DataType.Password)]
