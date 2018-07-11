@@ -13,6 +13,7 @@ namespace YLKnowledgeBase.Models.AccountViewModels
         [EmailAddress]
         public string Email { get; set; }*/
         [Required]
+        [Display(Name ="UserName")]
         [DataType(DataType.Text)]
         public string UserName { get; set; }
 
