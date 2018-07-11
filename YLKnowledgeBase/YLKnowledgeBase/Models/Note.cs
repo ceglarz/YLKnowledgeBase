@@ -11,9 +11,12 @@ namespace YLKnowledgeBase.Models
         [Key]
         [Display(Name = "Id")]
         public Guid NoteId { get; set; }
-        [MaxLength(50)]
+        [StringLength(50, MinimumLength = 3)]
+        [Required]
         public string Name { get; set; }
         [Display(Name = "Content of the note")]
+        [StringLength(5000, MinimumLength = 3)]
+        [Required]
         public string Content { get; set; }
         public DateTime DateOfCreate { get; set; }
 

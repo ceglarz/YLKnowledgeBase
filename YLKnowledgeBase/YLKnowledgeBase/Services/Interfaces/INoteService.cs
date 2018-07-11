@@ -8,12 +8,13 @@ namespace YLKnowledgeBase.Services.Interfaces
 {
     public interface INoteService
     {
-        IEnumerable<Note> GetAllNotes();
-        Note GetNotes(Guid? id);
-        void CreateNote();
+        Task<IEnumerable<Note>> GetAllNotes();
+        Task<Note> GetNote(Guid? id);
+        void CreateNote(Note note);
         void EditNote(Note note);
-        void ToDeleteNote();
+        void ToDeleteNote(Note note);
         bool NoteExists(Guid id);
-        void Save();
+        Task Save();
+        void Update(Note note);
     }
 }

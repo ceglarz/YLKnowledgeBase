@@ -25,14 +25,14 @@ namespace YLKnowledgeBase.Services
 
         public IEnumerable<Category> GetAllCategories()
         {
-            //return _context.Categories.ToList();
-            return CategoriesTest; //test
+            return _context.Categories.ToList();
+            //return CategoriesTest; //test
         }
 
         public async Task<Category> GetCategory(Guid id)
         {
-            //return await _context.Categories.SingleOrDefaultAsync(o => o.CategoryId == id);
-            return CategoriesTest.ElementAt(0); //test
+            return await _context.Categories.SingleOrDefaultAsync(o => o.CategoryId == id);
+            //return CategoriesTest.ElementAt(0); //test
         }
 
         public bool CategoryExists(Guid id)

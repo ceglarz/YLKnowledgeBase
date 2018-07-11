@@ -6,11 +6,14 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Controllers\NoteController_old.cs" />
+    <Compile Remove="Views\Note\**" />
+    <Content Remove="Views\Note\**" />
+    <EmbeddedResource Remove="Views\Note\**" />
+    <None Remove="Views\Note\**" />
   </ItemGroup>
 
   <ItemGroup>
-    <Content Remove="Views\Note\View.cshtml" />
+    <Compile Remove="Controllers\NoteController_old.cs" />
   </ItemGroup>
 
 

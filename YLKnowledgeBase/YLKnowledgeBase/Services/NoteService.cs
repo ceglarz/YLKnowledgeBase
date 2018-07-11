@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using YLKnowledgeBase.Data;
 using YLKnowledgeBase.Models;
 using YLKnowledgeBase.Services.Interfaces;
@@ -17,30 +18,49 @@ namespace YLKnowledgeBase.Services
             _context = context;
         }
 
+        List<Note> NotesTest = new List<Note>{
+            new Note {
+                Name = "Notatka 1",
+                Content = "bla bla",
+                Category = new Category(){CategoryId = new Guid("00000000-0000-0000-0000-000000000001"), Name="Kategoria 1"},
+                NoteId = new Guid("00000000-0000-0000-0000-000000000003"), TagNotes = new List<TagNote>(){}
+                /*TagNotes= new List<TagNote>(){
+                    TagId = new Guid("00000000-0000-0000-0000-000000000004"), Tag= new Tag(),
+                    NoteId = new Guid("00000000-0000-0000-0000-000000000003"), Note= new Note() }*/ }
+        }; //test
 
-        public IEnumerable<Note> GetAllNotes()
+        public async Task<IEnumerable<Note>> GetAllNotes()
         {
-            return _context.Notes.ToList();
+            return (await _context.Notes.ToListAsync());
+            //return CategoriesTest; //test
         }
 
-        public Note GetNotes(Guid? id)
+        public async Task<Note> GetNote(Guid? id)
         {
-            return _context.Notes.SingleOrDefault(o => o.NoteId == id);
+            return await _context.Notes.SingleOrDefaultAsync(o => o.NoteId == id);
+            //return NotesTest.SingleOrDefault(o => o.NoteId == id); //SingleOrDefault(o => o.NoteId == id); //test
         }
 
-        public void CreateNote()
+        public void CreateNote(Note note)
         {
-            throw new NotImplementedException();
+            note.DateOfCreate = DateTime.Now;
+            _context.Notes.Add(note);
         }
 
         public void EditNote(Note note)
         {
-            _context.Update(note);
+            var toEdit = _context.Notes.Find(note.NoteId);
+
+            toEdit.Name = note.Name;
+            toEdit.Category = note.Category;
+            toEdit.Content = note.Content;
+
+            _context.Notes.Update(toEdit);
         }
 
-        public void ToDeleteNote()
+        public void ToDeleteNote(Note note)
         {
-            throw new NotImplementedException();
+            _context.Remove(note);
         }
 
         public bool NoteExists(Guid id)
@@ -48,13 +68,14 @@ namespace YLKnowledgeBase.Services
             return _context.Notes.Any(o => o.NoteId == id);
         }
 
-        public async void Save()
+        public async Task Save()
         {
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (Exception e) { Console.WriteLine("{0} Exception caught.", e); }
+            await _context.SaveChangesAsync();
+        }
+
+        public void Update(Note note)
+        {
+            _context.Update(note);
         }
     }
 }
