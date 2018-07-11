@@ -1,0 +1,47 @@
+﻿@model IEnumerable<YLKnowledgeBase.Models.Note>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    <a asp-action="Create">Dodaj wpis</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+                <th>
+                    Tytuł
+                </th>
+                <th>
+                    Treść
+                </th>
+                <th>
+                    Data dodania
+                </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Content)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateOfCreate)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.NoteId">Edycja</a> |
+                <a asp-action="Details" asp-route-id="@item.NoteId">Szczegóły</a> |
+                <a asp-action="Delete" asp-route-id="@item.NoteId">Usuń</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
