@@ -25,7 +25,3 @@ C:\Users\Admin\Desktop\projekt\YLKnowledgeBase\YLKnowledgeBase\YLKnowledgeBase\o
 C:\Users\Admin\Desktop\projekt\YLKnowledgeBase\YLKnowledgeBase\YLKnowledgeBase\obj\Debug\netcoreapp2.0\YLKnowledgeBase.AssemblyInfo.cs
 C:\Users\Admin\Desktop\projekt\YLKnowledgeBase\YLKnowledgeBase\YLKnowledgeBase\obj\Debug\netcoreapp2.0\YLKnowledgeBase.dll
 C:\Users\Admin\Desktop\projekt\YLKnowledgeBase\YLKnowledgeBase\YLKnowledgeBase\obj\Debug\netcoreapp2.0\YLKnowledgeBase.pdb
-<<<<<<< Updated upstream
-C:\Users\Admin\Desktop\projekt\YLKnowledgeBase\YLKnowledgeBase\YLKnowledgeBase\obj\Debug\netcoreapp2.0\UserSecretsAssemblyInfo.cs
-=======
->>>>>>> Stashed changes
