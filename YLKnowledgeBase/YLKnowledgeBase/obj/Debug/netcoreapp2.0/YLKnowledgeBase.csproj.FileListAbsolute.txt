@@ -17,8 +17,15 @@ C:\Users\Admin\Desktop\projekt\YLKnowledgeBase\YLKnowledgeBase\YLKnowledgeBase\b
 C:\Users\Admin\Desktop\projekt\YLKnowledgeBase\YLKnowledgeBase\YLKnowledgeBase\bin\Debug\netcoreapp2.0\YLKnowledgeBase.pdb
 C:\Users\Admin\Desktop\projekt\YLKnowledgeBase\YLKnowledgeBase\YLKnowledgeBase\obj\Debug\netcoreapp2.0\YLKnowledgeBase.csprojAssemblyReference.cache
 C:\Users\Admin\Desktop\projekt\YLKnowledgeBase\YLKnowledgeBase\YLKnowledgeBase\obj\Debug\netcoreapp2.0\YLKnowledgeBase.csproj.CoreCompileInputs.cache
+<<<<<<< Updated upstream
+=======
+C:\Users\Admin\Desktop\projekt\YLKnowledgeBase\YLKnowledgeBase\YLKnowledgeBase\obj\Debug\netcoreapp2.0\UserSecretsAssemblyInfo.cs
+>>>>>>> Stashed changes
 C:\Users\Admin\Desktop\projekt\YLKnowledgeBase\YLKnowledgeBase\YLKnowledgeBase\obj\Debug\netcoreapp2.0\YLKnowledgeBase.AssemblyInfoInputs.cache
 C:\Users\Admin\Desktop\projekt\YLKnowledgeBase\YLKnowledgeBase\YLKnowledgeBase\obj\Debug\netcoreapp2.0\YLKnowledgeBase.AssemblyInfo.cs
 C:\Users\Admin\Desktop\projekt\YLKnowledgeBase\YLKnowledgeBase\YLKnowledgeBase\obj\Debug\netcoreapp2.0\YLKnowledgeBase.dll
 C:\Users\Admin\Desktop\projekt\YLKnowledgeBase\YLKnowledgeBase\YLKnowledgeBase\obj\Debug\netcoreapp2.0\YLKnowledgeBase.pdb
+<<<<<<< Updated upstream
 C:\Users\Admin\Desktop\projekt\YLKnowledgeBase\YLKnowledgeBase\YLKnowledgeBase\obj\Debug\netcoreapp2.0\UserSecretsAssemblyInfo.cs
+=======
+>>>>>>> Stashed changes
