@@ -19,30 +19,33 @@ namespace YLKnowledgeBase.Services
         }
 
         List <Category> CategoriesTest = new List<Category>{
-            new Category { Name = "Kategoria 1", CategoryId= new Guid("00000000-0000-0000-0000-000000000001") },
+            new Category { Name = "Kategoria 1", CategoryId= new Guid("00000000-0000-0000-0000-000000000001"),
+                Notes = new List<Note>(){ new Note() { NoteId = new Guid("00000000-0000-0000-0000-000000000003") },
+                                            new Note() { NoteId = new Guid("00000000-0000-0000-0000-000000000004") } } },
             new Category { Name = "Kategoria 2", CategoryId= new Guid("00000000-0000-0000-0000-000000000002") }
         }; //test
 
-        public IEnumerable<Category> GetAllCategories()
+        public async Task <IEnumerable<Category>> GetAllCategories()
         {
-            //return _context.Categories.ToList();
-            return CategoriesTest; //test
+            return (await _context.Categories.ToListAsync());
+            /*return (await _context.Categories
+                .Select(c => new
+            {
+                Category = c,
+                Name = c.Name,
+                Notes = c.Notes
+            }).ToListAsync());*/
+            //return CategoriesTest; //test
         }
 
-        public Task <Category> GetCategory(Guid id)
+        public async Task<Category> GetCategory(Guid? id)
         {
-            return _context.Categories.SingleOrDefaultAsync(o => o.CategoryId == id);
+            var notes = await _context.Notes.Where(n => n.Category.CategoryId == id).ToListAsync();
+            return await _context.Categories
+                .Where(c => c.CategoryId == id)
+                .Select(c => new Category { Name = c.Name, CategoryId = c.CategoryId, Notes = notes }).FirstOrDefaultAsync();
+            //return await _context.Categories.SingleOrDefaultAsync(o => o.CategoryId == id);
             //return CategoriesTest.SingleOrDefault(o => o.CategoryId == id); //test
-        }
-
-        public bool CategoryExists(Guid id)
-        {
-            return _context.Categories.Any(o => o.CategoryId == id);
-        }
-
-        public async Task Save()
-        {
-            await _context.SaveChangesAsync();
         }
 
         public void CreateCategory(Category category)
@@ -65,5 +68,19 @@ namespace YLKnowledgeBase.Services
             throw new NotImplementedException();
         }
 
+        public void Update(Category category)
+        {
+            _context.Update(category);
+        }
+
+        public bool CategoryExists(Guid id)
+        {
+            return _context.Categories.Any(o => o.CategoryId == id);
+        }
+
+        public async Task Save()
+        {
+            await _context.SaveChangesAsync();
+        }
     }
 }

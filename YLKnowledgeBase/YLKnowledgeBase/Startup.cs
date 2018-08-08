@@ -106,7 +106,7 @@ namespace YLKnowledgeBase
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
-            CreateUserRoles(services).Wait();
+            //CreateUserRoles(services).Wait();
         }
         
     }

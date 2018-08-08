@@ -1,22 +1,32 @@
 ﻿class ServiceAbstract {
     constructor() {
-        this.getData = function (url, type, success, data) {
+        this.array;
+        this.getData = function (url, success, data) {
             $.ajax({
                 url: url,
-                type: type,
+                type: 'GET',
+                data: date,
+                success: success
+            });
+        };
+        this.postData = function (url, success, data) {
+            $.ajax({
+                url: url,
+                type: 'POST',
                 data: date,
                 success: success
             });
         };
     }
 
-}
+    static toArray(data) {
+        this.array = data.map(x => x);
+    }
 
-createButton2 = function (data) {
-    $.each(data, function (key, item) {
-        $('<button>' + item.name + '</button>').appendTo($('#categories'));
-    });
-};
+    static printArray() {
+        console.log(this.array);
+    }
+}
 
 class CategoryService extends ServiceAbstract {
     constructor() {
@@ -24,28 +34,107 @@ class CategoryService extends ServiceAbstract {
         this.getData = function () {
             $.ajax({
                 url: "api/Categories",
-                type: 'GET',
                 data: {},
-                success: function (response) { CategoryService.createButton(response); }
-                //success: function (response) { CategoryService.metoda(response); }
-                //success: function (response) { createButton(response);}
+                success: function (response) {
+                    CategoryService.toArray(response);
+                    CategoryService.createButtons('categories');
+                    CategoryService.printArray();
+                }
             });
         };
     }
 
-    static metoda(data) {
-        console.log(data);
-    }
+    static createButtons(elementId) {
+        this.array.forEach(function (item) {
 
-    static createButton (data) {
-        $.each(data, function (key, item) {
-            $('<div class="option-categories"><button class="option-categories">' + item.name + '</button></div>').appendTo($('#categories'));
+            if (item.notes !== null) {
+                var notesArray = item.notes.map(x => x);
+                notesArray.forEach(function (note) {
+                    console.log(note);
+                });
+            }
+
+            var element = document.getElementById(elementId);
+            var div = document.createElement("div");
+            div.setAttribute("class", "category");
+            div.setAttribute("id", item.categoryId);
+            //console.log(element);
+            //element.innerHTML += '<div class="option-' + elementId + '"><button>' + item.name + '</button></div>';
+
+            var btn = document.createElement("button");
+            btn.setAttribute("class", "option-" + elementId);
+            var t = document.createTextNode(item.name);
+            btn.appendChild(t);
+            btn.setAttribute("onclick", 'changeActivity("' + item.categoryId +'", "category-active")');
+            //btn.addEventListener("click", ServiceAbstract.changeActivity(div));
+            div.appendChild(btn);
+
+            var btnp = document.createElement("button");
+            btnp.setAttribute("class", "btn-plus");
+            var tp = document.createTextNode("+");
+            btnp.appendChild(tp);
+            div.appendChild(btnp);
+
+            var notes = document.createElement("div");
+            notes.setAttribute("class", "notes");
+            //notes.setAttribute("onclick", 'changeActivity("' + item.categoryId + '", "category-active")');
+            div.appendChild(notes);
+
+            element.appendChild(div);
         });
     }
 
 }
 
+class NoteService extends ServiceAbstract {
+    constructor(divId) {
+        super();
+        this.divId = divId;
+        this.getData = function () {
+            $.ajax({
+                url: "api/Notes/",
+                data: {},
+                success: function (response) {
+                    //console.log(this);
+                    NoteService.toArray(response);
+                    NoteService.printArray();
+                    NoteService.toCategories();
+                }
+            });
+        };
+    }
 
+    static createButton(divId) {
+        var element = document.getElementById(elementId);
+        var divNotes = element.getElementsByClassName('notes');
+    }
+
+    static toCategories() {
+        console.log();
+    }
+}
+
+function changeActivity(divId, actClass) {
+    console.log(divId);
+    var div = document.getElementById(divId);
+    if (div.classList.contains(actClass)) {
+        div.classList.remove(actClass);
+    }
+    else {
+        div.classList.add(actClass);
+    }
+
+    //const noteService = new NoteService(divId);
+    //noteService.createButton(divId);
+}
+
+$(document).ready(function () {
+    console.log("ready");
+    const categoryService = new CategoryService();
+    categoryService.getData();
+    const noteService = new NoteService();
+    noteService.getData();
+});
 
 function getCount(data) {
     const el = $('#counter');
@@ -67,12 +156,6 @@ function Category(id, name) {
     this.name = name;
     console.log(this.name);
 }
-
-$(document).ready(function () {
-    console.log("ready");
-    const categoryService = new CategoryService();
-    categoryService.getData();
-});
 
 /*
 function getData(url) {

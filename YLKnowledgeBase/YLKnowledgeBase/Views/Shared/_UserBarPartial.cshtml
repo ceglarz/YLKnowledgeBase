@@ -6,5 +6,7 @@
 
 @if (SignInManager.IsSignedIn(User))
 {
-    <li><a asp-area="" asp-controller="KnowledgeBaseController" asp-action="Index">Knowledge Base</a></li>
+    <li><a asp-area="" asp-controller="KnowledgeBase" asp-action="Index">Knowledge Base</a></li>
+    <li><a asp-area="" asp-controller="Categories" asp-action="Index">Categories</a></li>
+    <li><a asp-area="" asp-controller="Notes" asp-action="Index">Notes</a></li>
 }
