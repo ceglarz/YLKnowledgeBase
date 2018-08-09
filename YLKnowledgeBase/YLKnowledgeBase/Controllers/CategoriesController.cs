@@ -1,36 +1,31 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net.Http;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using Newtonsoft.Json;
 using YLKnowledgeBase.Data;
 using YLKnowledgeBase.Models;
 using YLKnowledgeBase.Services;
-using YLKnowledgeBase.Services.Interfaces;
 
 namespace YLKnowledgeBase.Controllers
 {
-    public class NotesController : Controller
+    public class CategoriesController : Controller
     {
-        //private readonly ApplicationDbContext _context;
-        private readonly INoteService _noteService;
-
-        public NotesController(INoteService noteService)
+        private readonly ICategoryService _categoryService;
+        public CategoriesController(ICategoryService categoryService)
         {
-            _noteService = noteService;
+            _categoryService = categoryService;
         }
 
-        // GET: Notes
+        // GET: Categories
         public async Task<IActionResult> Index()
         {
-            return View(await _noteService.GetAllNotes());
+            return View(await _categoryService.GetAllCategories());
         }
-
-        // GET: Notes/Details/5
+        
+        // GET: Categories/Details/5
         public async Task<IActionResult> Details(Guid? id)
         {
             if (id == null)
@@ -38,43 +33,40 @@ namespace YLKnowledgeBase.Controllers
                 return NotFound();
             }
 
-            var note = await _noteService.GetNote(id);
-            if (note == null)
+            var category = await _categoryService.GetCategory(id);
+      
+            if (category == null)
             {
                 return NotFound();
             }
 
-            return View(note);
+            return View(category);
         }
-
-        // GET: Notes/Create
-        public async Task<IActionResult> Create()
+        
+        // GET: Categories/Create
+        public IActionResult Create()
         {
-            var httpClient = new HttpClient();
-            var jsonData = await httpClient.GetStringAsync("https://localhost:44306/api/Categories");
-            var data = JsonConvert.DeserializeObject<IEnumerable<Category>>(jsonData);
-            ViewBag.Data = data;
             return View();
         }
 
-        // POST: Notes/Create
+        // POST: Categories/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("NoteId,Name,Content,DateOfCreate,Category.CategoryId")] Note note)
+        public async Task<IActionResult> Create([Bind("CategoryId,Name")] Category category)
         {
             if (ModelState.IsValid)
             {
-                note.NoteId = Guid.NewGuid();
-                _noteService.CreateNote(note);
-                await _noteService.Save();
+                category.CategoryId = Guid.NewGuid();
+                _categoryService.CreateCategory(category);
+                await _categoryService.Save();
                 return RedirectToAction(nameof(Index));
             }
-            return View(note);
+            return View(category);
         }
-
-        // GET: Notes/Edit/5
+        
+        // GET: Categories/Edit/5
         public async Task<IActionResult> Edit(Guid? id)
         {
             if (id == null)
@@ -82,26 +74,22 @@ namespace YLKnowledgeBase.Controllers
                 return NotFound();
             }
 
-            var note = await _noteService.GetNote(id);
-            if (note == null)
+            var category = await _categoryService.GetCategory(id);
+            if (category == null)
             {
                 return NotFound();
             }
-            var httpClient = new HttpClient();
-            var jsonData = await httpClient.GetStringAsync("https://localhost:44306/api/Categories");
-            var data = JsonConvert.DeserializeObject<IEnumerable<Category>>(jsonData);
-            ViewBag.Data = data;
-            return View(note);
+            return View(category);
         }
 
-        // POST: Notes/Edit/5
+        // POST: Categories/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(Guid id, [Bind("NoteId,Name,Content,DateOfCreate,Category.CategoryId")] Note note)
+        public async Task<IActionResult> Edit(Guid id, [Bind("CategoryId,Name")] Category category)
         {
-            if (id != note.NoteId)
+            if (id != category.CategoryId)
             {
                 return NotFound();
             }
@@ -110,12 +98,12 @@ namespace YLKnowledgeBase.Controllers
             {
                 try
                 {
-                    _noteService.Update(note);
-                    await _noteService.Save();
+                    _categoryService.EditCategory(category);
+                    await _categoryService.Save();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!NoteExists(note.NoteId))
+                    if (!_categoryService.CategoryExists(category.CategoryId))
                     {
                         return NotFound();
                     }
@@ -126,10 +114,10 @@ namespace YLKnowledgeBase.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(note);
+            return View(category);
         }
-
-        // GET: Notes/Delete/5
+        
+        // GET: Categories/Delete/5
         public async Task<IActionResult> Delete(Guid? id)
         {
             if (id == null)
@@ -137,32 +125,29 @@ namespace YLKnowledgeBase.Controllers
                 return NotFound();
             }
 
-            var note = await _noteService.GetNote(id);
-            if (note == null)
+            var category = await _categoryService.GetCategory(id);
+            if (category == null)
             {
                 return NotFound();
             }
 
-            return View(note);
+            return View(category);
         }
 
-        
-        // POST: Notes/Delete/5
+        // POST: Categories/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(Guid id)
         {
-            var note = await _noteService.GetNote(id);
-            _noteService.ToDeleteNote(note);
-            await _noteService.Save();
+            var category = await _categoryService.GetCategory(id);
+            _categoryService.ToDeleteCategory(category);
+            await _categoryService.Save();
             return RedirectToAction(nameof(Index));
         }
-        
 
-        private bool NoteExists(Guid id)
+        private bool CategoryExists(Guid id)
         {
-            return _noteService.NoteExists(id);
-            //return _context.Notes.Any(e => e.NoteId == id);
+            return _categoryService.CategoryExists(id);
         }
     }
 }

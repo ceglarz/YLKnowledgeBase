@@ -18,18 +18,18 @@ namespace YLKnowledgeBase.Services
             _context = context;
         }
 
-        List <Category> CategoriesTest = new List<Category>{
+        /*List <Category> CategoriesTest = new List<Category>{
             new Category { Name = "Kategoria 1", CategoryId= Guid.NewGuid() },
             new Category { Name = "Kategoria 2", CategoryId= Guid.NewGuid() }
-        }; //test
+        };*/ //test
 
-        public IEnumerable<Category> GetAllCategories()
+        public async Task<IEnumerable<Category>> GetAllCategories()
         {
-            return _context.Categories.ToList();
+            return (await _context.Categories.ToListAsync());
             //return CategoriesTest; //test
         }
 
-        public async Task<Category> GetCategory(Guid id)
+        public async Task<Category> GetCategory(Guid? id)
         {
             return await _context.Categories.SingleOrDefaultAsync(o => o.CategoryId == id);
             //return CategoriesTest.ElementAt(0); //test
@@ -40,24 +40,24 @@ namespace YLKnowledgeBase.Services
             return _context.Categories.Any(o => o.CategoryId == id);
         }
 
-        public async void Save()
+        public async Task Save()
         {
             await _context.SaveChangesAsync();
         }
 
         public void CreateCategory(Category category)
         {
-            throw new NotImplementedException();
+            _context.Categories.Add(category);
         }
 
         public void EditCategory(Category category)
         {
-            throw new NotImplementedException();
+            _context.Update(category);
         }
 
-        public void ToDeleteCategory()
+        public void ToDeleteCategory(Category category)
         {
-            throw new NotImplementedException();
+            _context.Remove(category);
         }
     }
 }

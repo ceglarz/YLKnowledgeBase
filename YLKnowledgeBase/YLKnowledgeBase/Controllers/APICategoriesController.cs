@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -24,9 +25,9 @@ namespace YLKnowledgeBase.Controllers
 
         // GET: api/Categories
         [HttpGet]
-        public IEnumerable<Category> GetCategories()
+        public async Task<IEnumerable<Category>> GetCategories()
         {
-            return _categoryService.GetAllCategories();
+            return await _categoryService.GetAllCategories();
         }
 
         // GET: api/Categories/5
@@ -49,10 +50,9 @@ namespace YLKnowledgeBase.Controllers
             return Ok(category);
         }
 
-        /*
-
         // PUT: api/Categories/5
         [HttpPut("{id}")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> PutCategory([FromRoute] Guid id, [FromBody] Category category)
         {
             if (!ModelState.IsValid)
@@ -65,11 +65,12 @@ namespace YLKnowledgeBase.Controllers
                 return BadRequest();
             }
 
-            _context.Entry(category).State = EntityState.Modified;
+            _categoryService.EditCategory(category);
+            //_context.Entry(category).State = EntityState.Modified;
 
             try
             {
-                await _context.SaveChangesAsync();
+                await _categoryService.Save();
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -96,11 +97,12 @@ namespace YLKnowledgeBase.Controllers
             }
 
             _categoryService.CreateCategory(category);
-            //await _context.SaveChangesAsync();
+            await _categoryService.Save();
 
             return CreatedAtAction("GetCategory", new { id = category.CategoryId }, category);
         }
 
+        /*
         // DELETE: api/Categories/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteCategory([FromRoute] Guid id)
@@ -121,11 +123,12 @@ namespace YLKnowledgeBase.Controllers
 
             return Ok(category);
         }
+        */
 
         private bool CategoryExists(Guid id)
         {
-           return _context.Categories.Any(e => e.CategoryId == id);
+            return _categoryService.CategoryExists(id);
+            //return _context.Categories.Any(e => e.CategoryId == id);
         }
-        */
     }
 }
