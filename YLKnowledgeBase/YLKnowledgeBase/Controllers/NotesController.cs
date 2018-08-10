@@ -62,7 +62,7 @@ namespace YLKnowledgeBase.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("NoteId,Name,Content,DateOfCreate,Category.CategoryId")] Note note)
+        public async Task<IActionResult> Create([Bind("NoteId,Name,Content,DateOfCreate,CategoryId")] Note note)
         {
             if (ModelState.IsValid)
             {

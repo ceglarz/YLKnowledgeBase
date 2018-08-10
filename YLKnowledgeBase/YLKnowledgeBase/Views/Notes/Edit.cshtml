@@ -34,7 +34,7 @@
                     <option value="">Wybierz kategorię</option>
                     @foreach (var p in @ViewBag.Data)
                     {
-                         <option value="@p.CategoryId">@p.CategoryId</option>
+                         <option value="@p.CategoryId">@p.Name</option>
                     }
                 </select>
                 <span asp-validation-for="Category" class="text-danger"></span>
