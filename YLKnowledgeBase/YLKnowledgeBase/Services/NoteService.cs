@@ -31,26 +31,25 @@ namespace YLKnowledgeBase.Services
 
         public async Task<IEnumerable<Note>> GetAllNotes()
         {
-            //return (await _context.Notes.ToListAsync());
-            return (await _context.Notes.Include(note => note.Category).ToListAsync());
+            return (await _context.Notes.ToListAsync());
+            //return (await _context.Notes.Include(note => note.Category).ToListAsync());
             //return CategoriesTest; //test
         }
 
         public async Task<Note> GetNote(Guid? id)
         {
-            //var category = await _context.Categories.Where(n => n.CategoryId == id).FirstOrDefaultAsync();
-            /*return await _context.Notes
+            var category = await _context.Categories.Where(n => n.CategoryId == id).FirstOrDefaultAsync();
+            return await _context.Notes
                 .Where(c => c.NoteId == id)
-                .Select(c => new Note { Name = c.Name, Category =  await _context.Categories.Where(n => n.CategoryId == c.Category.CategoryId) }
-                .FirstOrDefaultAsync(); */
-            return await _context.Notes.SingleOrDefaultAsync(o => o.NoteId == id).Select(n => new Note { Category = category });
+                .FirstOrDefaultAsync();
+            //return await _context.Notes.Where(o => o.NoteId == id).FirstOrDefaultAsync();
             //return NotesTest.SingleOrDefault(o => o.NoteId == id); //SingleOrDefault(o => o.NoteId == id); //test
         }
 
         public async Task CreateNote(Note note)
         {
-            note.DateOfCreate = DateTime.Now;
-            await _context.Notes.AddAsync(note);
+            note.Category = _context.Categories.Where(c => c.CategoryId == note.Category.CategoryId).FirstOrDefault();
+            _context.Notes.Add(note);
             await _context.SaveChangesAsync();
         }
 

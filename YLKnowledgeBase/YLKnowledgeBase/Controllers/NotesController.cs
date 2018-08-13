@@ -65,16 +65,15 @@ namespace YLKnowledgeBase.Controllers
         {
             if (ModelState.IsValid)
             {
-                Category category = await _categoryService.GetCategory(notevm.CategoriesList);
-                var note = new Note {
-                    //NoteId = Guid.NewGuid(),
+                Note note = new Note
+                {
+                    NoteId = Guid.NewGuid(),
                     Name = notevm.Name,
                     Content = notevm.Content,
-                    DateOfCreate = notevm.DateOfCreate,
-                    Category = category
+                    DateOfCreate = DateTime.Now,
+                    Category = new Category() { CategoryId = notevm.CategoriesList }
                 };
 
-                //note.NoteId = Guid.NewGuid();
                 await _noteService.CreateNote(note);
                 return RedirectToAction(nameof(Index));
             }
