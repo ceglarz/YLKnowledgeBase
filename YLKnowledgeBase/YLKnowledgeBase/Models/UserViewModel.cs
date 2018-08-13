@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace YLKnowledgeBase.Models
@@ -15,5 +16,6 @@ namespace YLKnowledgeBase.Models
         public string Email { get; set; }
 
         public string Password { get; set; }
+        public IdentityRole role { get; set; }
     }
 }

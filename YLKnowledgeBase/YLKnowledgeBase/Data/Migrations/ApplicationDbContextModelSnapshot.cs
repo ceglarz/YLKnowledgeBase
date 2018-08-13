@@ -166,6 +166,8 @@ namespace YLKnowledgeBase.Data.Migrations
                     b.Property<string>("UserName")
                         .HasMaxLength(256);
 
+                    b.Property<string>("UserRoleId");
+
                     b.HasKey("Id");
 
                     b.HasIndex("NormalizedEmail")
@@ -175,6 +177,8 @@ namespace YLKnowledgeBase.Data.Migrations
                         .IsUnique()
                         .HasName("UserNameIndex")
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
+
+                    b.HasIndex("UserRoleId");
 
                     b.ToTable("AspNetUsers");
                 });
@@ -281,6 +285,13 @@ namespace YLKnowledgeBase.Data.Migrations
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("YLKnowledgeBase.Models.ApplicationUser", b =>
+                {
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", "UserRole")
+                        .WithMany()
+                        .HasForeignKey("UserRoleId");
                 });
 
             modelBuilder.Entity("YLKnowledgeBase.Models.Note", b =>
