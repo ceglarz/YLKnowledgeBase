@@ -41,6 +41,9 @@ namespace YLKnowledgeBase.Services
             var category = await _context.Categories.Where(n => n.CategoryId == id).FirstOrDefaultAsync();
             return await _context.Notes
                 .Where(c => c.NoteId == id)
+                .Select(n => new Note() { NoteId = n.NoteId, Name = n.Name, Content = n.Content, DateOfCreate = n.DateOfCreate,
+                    Category = new Category() { CategoryId = n.Category.CategoryId, Name = n.Category.Name, Notes = n.Category.Notes }
+                })
                 .FirstOrDefaultAsync();
             //return await _context.Notes.Where(o => o.NoteId == id).FirstOrDefaultAsync();
             //return NotesTest.SingleOrDefault(o => o.NoteId == id); //SingleOrDefault(o => o.NoteId == id); //test

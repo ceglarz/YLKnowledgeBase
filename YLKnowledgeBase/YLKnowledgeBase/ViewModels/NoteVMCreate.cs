@@ -15,8 +15,10 @@ namespace YLKnowledgeBase.ViewModels
         public DateTime DateOfCreate { get; set; }
 
         public Guid CategoriesList { get; set; }
+        public Category Category { get; set; }
+        public IEnumerable<Category> PossibleCategories { get; set; }
 
         //public IList<TagToCheckBoxViewModel> Tags { get; set; }
-        public IList<Category> PossibleCategories { get; set; }
+
     }
 }

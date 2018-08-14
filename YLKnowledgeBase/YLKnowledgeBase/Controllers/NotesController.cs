@@ -93,7 +93,8 @@ namespace YLKnowledgeBase.Controllers
             {
                 return NotFound();
             }
-            return View(note);
+            var notevm = new NoteVMCreate() { NoteId = note.NoteId, Name = note.Name, Content = note.Content, CategoriesList = note.Category.CategoryId, PossibleCategories = await _categoryService.GetAllCategories() };
+            return View(notevm);
         }
 
         // POST: Notes/Edit/5
@@ -104,7 +105,7 @@ namespace YLKnowledgeBase.Controllers
         //public async Task<IActionResult> Edit(Guid id, [Bind("NoteId,Name,Content,DateOfCreate")] Note note)
         public async Task<IActionResult> Edit(Guid id, [Bind("NoteId,Name,Content,DateOfCreate,CategoriesList")] NoteVMCreate notevm)
         {
-            Note note = new Note { NoteId=notevm.NoteId, Name=notevm.Name , Content=notevm.Content, DateOfCreate=notevm.DateOfCreate };
+            var note = new Note { NoteId=notevm.NoteId, Name=notevm.Name , Content=notevm.Content, DateOfCreate=notevm.DateOfCreate };
             var category = await _categoryService.GetCategory(notevm.CategoriesList);
             note.Category = category;
 
@@ -126,7 +127,6 @@ namespace YLKnowledgeBase.Controllers
                     //_categoryService.EditCategory(category);
                     _noteService.EditNote(note);
                     _categoryService.Update(category);
-
                     await _noteService.Save();
                 }
                 catch (DbUpdateConcurrencyException)
@@ -142,7 +142,7 @@ namespace YLKnowledgeBase.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(note);
+            return View(notevm);
         }
 
         // GET: Notes/Delete/5
