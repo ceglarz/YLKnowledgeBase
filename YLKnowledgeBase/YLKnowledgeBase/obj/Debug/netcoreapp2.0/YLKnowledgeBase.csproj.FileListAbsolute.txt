@@ -10,20 +10,7 @@ C:\Users\Oskar\source\repos\YLKnowledgeBase\YLKnowledgeBase\YLKnowledgeBase\obj\
 C:\Users\Oskar\source\repos\YLKnowledgeBase\YLKnowledgeBase\YLKnowledgeBase\obj\Debug\netcoreapp2.0\YLKnowledgeBase.AssemblyInfo.cs
 C:\Users\Oskar\source\repos\YLKnowledgeBase\YLKnowledgeBase\YLKnowledgeBase\obj\Debug\netcoreapp2.0\YLKnowledgeBase.dll
 C:\Users\Oskar\source\repos\YLKnowledgeBase\YLKnowledgeBase\YLKnowledgeBase\obj\Debug\netcoreapp2.0\YLKnowledgeBase.pdb
-<<<<<<< HEAD
-C:\Users\Admin\Desktop\projektYL\YLKnowledgeBase\YLKnowledgeBase\YLKnowledgeBase\bin\Debug\netcoreapp2.0\YLKnowledgeBase.deps.json
-C:\Users\Admin\Desktop\projektYL\YLKnowledgeBase\YLKnowledgeBase\YLKnowledgeBase\bin\Debug\netcoreapp2.0\YLKnowledgeBase.runtimeconfig.json
-C:\Users\Admin\Desktop\projektYL\YLKnowledgeBase\YLKnowledgeBase\YLKnowledgeBase\bin\Debug\netcoreapp2.0\YLKnowledgeBase.runtimeconfig.dev.json
-C:\Users\Admin\Desktop\projektYL\YLKnowledgeBase\YLKnowledgeBase\YLKnowledgeBase\bin\Debug\netcoreapp2.0\YLKnowledgeBase.dll
-C:\Users\Admin\Desktop\projektYL\YLKnowledgeBase\YLKnowledgeBase\YLKnowledgeBase\bin\Debug\netcoreapp2.0\YLKnowledgeBase.pdb
-C:\Users\Admin\Desktop\projektYL\YLKnowledgeBase\YLKnowledgeBase\YLKnowledgeBase\obj\Debug\netcoreapp2.0\YLKnowledgeBase.csprojAssemblyReference.cache
-C:\Users\Admin\Desktop\projektYL\YLKnowledgeBase\YLKnowledgeBase\YLKnowledgeBase\obj\Debug\netcoreapp2.0\YLKnowledgeBase.csproj.CoreCompileInputs.cache
-C:\Users\Admin\Desktop\projektYL\YLKnowledgeBase\YLKnowledgeBase\YLKnowledgeBase\obj\Debug\netcoreapp2.0\YLKnowledgeBase.AssemblyInfoInputs.cache
-C:\Users\Admin\Desktop\projektYL\YLKnowledgeBase\YLKnowledgeBase\YLKnowledgeBase\obj\Debug\netcoreapp2.0\YLKnowledgeBase.AssemblyInfo.cs
-C:\Users\Admin\Desktop\projektYL\YLKnowledgeBase\YLKnowledgeBase\YLKnowledgeBase\obj\Debug\netcoreapp2.0\YLKnowledgeBase.dll
-C:\Users\Admin\Desktop\projektYL\YLKnowledgeBase\YLKnowledgeBase\YLKnowledgeBase\obj\Debug\netcoreapp2.0\YLKnowledgeBase.pdb
-C:\Users\Admin\Desktop\projektYL\YLKnowledgeBase\YLKnowledgeBase\YLKnowledgeBase\obj\Debug\netcoreapp2.0\UserSecretsAssemblyInfo.cs
-=======
+
 C:\Users\Admin\Desktop\projekt\YLKnowledgeBase\YLKnowledgeBase\YLKnowledgeBase\bin\Debug\netcoreapp2.0\YLKnowledgeBase.deps.json
 C:\Users\Admin\Desktop\projekt\YLKnowledgeBase\YLKnowledgeBase\YLKnowledgeBase\bin\Debug\netcoreapp2.0\YLKnowledgeBase.runtimeconfig.json
 C:\Users\Admin\Desktop\projekt\YLKnowledgeBase\YLKnowledgeBase\YLKnowledgeBase\bin\Debug\netcoreapp2.0\YLKnowledgeBase.runtimeconfig.dev.json
@@ -39,4 +26,4 @@ C:\Users\Admin\Desktop\projekt\YLKnowledgeBase\YLKnowledgeBase\YLKnowledgeBase\o
 C:\Users\Admin\Desktop\projekt\YLKnowledgeBase\YLKnowledgeBase\YLKnowledgeBase\obj\Debug\netcoreapp2.0\YLKnowledgeBase.AssemblyInfo.cs
 C:\Users\Admin\Desktop\projekt\YLKnowledgeBase\YLKnowledgeBase\YLKnowledgeBase\obj\Debug\netcoreapp2.0\YLKnowledgeBase.dll
 C:\Users\Admin\Desktop\projekt\YLKnowledgeBase\YLKnowledgeBase\YLKnowledgeBase\obj\Debug\netcoreapp2.0\YLKnowledgeBase.pdb
->>>>>>> remotes/origin/feature-adding-Roles
+
