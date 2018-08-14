@@ -126,10 +126,6 @@ namespace YLKnowledgeBase
             });
             //CreateUserRoles(services).Wait();
         }
-<<<<<<< HEAD
-        
-=======
-       
->>>>>>> remotes/origin/feature-adding-Roles
+
     }
 }
