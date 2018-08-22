@@ -7,15 +7,15 @@ using YLKnowledgeBase.Models;
 
 namespace YLKnowledgeBase.ViewModels
 {
-    public class NoteVMCreate
+    public class NoteVM
     {
         public Guid NoteId { get; set; }
         public string Name { get; set; }
         public string Content { get; set; }
         public DateTime DateOfCreate { get; set; }
 
-        public Guid CategoriesList { get; set; }
-        public Category Category { get; set; }
+        //public Guid CategoriesList { get; set; }
+        public Guid CategoryId { get; set; }
         public IEnumerable<Category> PossibleCategories { get; set; }
 
         //public IList<TagToCheckBoxViewModel> Tags { get; set; }

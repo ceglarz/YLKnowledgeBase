@@ -25,9 +25,9 @@ namespace YLKnowledgeBase.Controllers
 
         // GET: api/Categories
         [HttpGet]
-        public async Task <IEnumerable<Category>> GetCategories()
+        public IEnumerable<Category> GetCategories()
         {
-            return await _categoryService.GetAllCategories();
+            return _categoryService.GetAllCategories();
         }
 
         // GET: api/Categories/5

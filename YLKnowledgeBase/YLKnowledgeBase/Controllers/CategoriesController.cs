@@ -20,9 +20,9 @@ namespace YLKnowledgeBase.Controllers
         }
 
         // GET: Categories
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
-            return View(await _categoryService.GetAllCategories());
+            return View(_categoryService.GetAllCategories());
         }
 
         // GET: Categories/Details/5

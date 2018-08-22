@@ -25,9 +25,9 @@ namespace YLKnowledgeBase.Services
             new Category { Name = "Kategoria 2", CategoryId= new Guid("00000000-0000-0000-0000-000000000002") }
         }; //test
 
-        public async Task <IEnumerable<Category>> GetAllCategories()
+        public IEnumerable<Category> GetAllCategories()
         {
-            return (await _context.Categories.ToListAsync());
+            return (_context.Categories.ToList());
             /*return (await _context.Categories
                 .Select(c => new
             {

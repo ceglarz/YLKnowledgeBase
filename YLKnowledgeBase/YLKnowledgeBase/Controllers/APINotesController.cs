@@ -97,7 +97,7 @@ namespace YLKnowledgeBase.Controllers
                 return BadRequest(ModelState);
             }
 
-            _noteService.CreateNote(note);
+            await _noteService.CreateNote(note);
             await _noteService.Save();
 
             return CreatedAtAction("GetNote", new { id = note.NoteId }, note);

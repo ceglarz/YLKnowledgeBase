@@ -50,7 +50,8 @@ namespace YLKnowledgeBase.Controllers
         // GET: Notes/Create
         public IActionResult Create()
         {
-            NoteVMCreate notevm = new NoteVMCreate();
+            NoteVM notevm = new NoteVM();
+            notevm.PossibleCategories = _categoryService.GetAllCategories();
             //notevm.Tags = new List<TagToCheckBoxViewModel>();
 
             return View(notevm);
@@ -61,18 +62,19 @@ namespace YLKnowledgeBase.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Name,Content,DateOfCreate,CategoriesList")] NoteVMCreate notevm)
+        public async Task<IActionResult> Create([Bind("Name,Content,DateOfCreate,CategoryId")] NoteVM notevm)
         {
             if (ModelState.IsValid)
             {
-                Note note = new Note
-                {
-                    NoteId = Guid.NewGuid(),
-                    Name = notevm.Name,
-                    Content = notevm.Content,
-                    DateOfCreate = DateTime.Now,
-                    Category = new Category() { CategoryId = notevm.CategoriesList }
-                };
+
+                Note note = new Note();
+                note.NoteId = Guid.NewGuid();
+                note.Name = notevm.Name;
+                note.Content = notevm.Content;
+                note.DateOfCreate = DateTime.Now;
+                note.Category = new Category();
+                note.Category.CategoryId = notevm.CategoryId;
+
 
                 await _noteService.CreateNote(note);
                 return RedirectToAction(nameof(Index));
@@ -93,7 +95,9 @@ namespace YLKnowledgeBase.Controllers
             {
                 return NotFound();
             }
-            var notevm = new NoteVMCreate() { NoteId = note.NoteId, Name = note.Name, Content = note.Content, CategoriesList = note.Category.CategoryId, PossibleCategories = await _categoryService.GetAllCategories() };
+
+            var notevm = new NoteVM() { NoteId = note.NoteId, Name = note.Name, Content = note.Content,
+                                        CategoryId = note.Category.CategoryId, PossibleCategories = _categoryService.GetAllCategories() };
             return View(notevm);
         }
 
@@ -103,11 +107,10 @@ namespace YLKnowledgeBase.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         //public async Task<IActionResult> Edit(Guid id, [Bind("NoteId,Name,Content,DateOfCreate")] Note note)
-        public async Task<IActionResult> Edit(Guid id, [Bind("NoteId,Name,Content,DateOfCreate,CategoriesList")] NoteVMCreate notevm)
+        public async Task<IActionResult> Edit(Guid id, [Bind("NoteId,Name,Content,DateOfCreate,CategoryId")] NoteVM notevm)
         {
-            var note = new Note { NoteId=notevm.NoteId, Name=notevm.Name , Content=notevm.Content, DateOfCreate=notevm.DateOfCreate };
-            var category = await _categoryService.GetCategory(notevm.CategoriesList);
-            note.Category = category;
+            var category = await _categoryService.GetCategory(notevm.CategoryId);
+            var note = new Note { NoteId=notevm.NoteId, Name=notevm.Name , Content=notevm.Content, Category = category };
 
             if (id != note.NoteId)
             {
